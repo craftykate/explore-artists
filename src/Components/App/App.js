@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import Spotify from '../../util/Spotify';
+import Header from '../Header/Header';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import SimilarArtists from '../SimilarArtists/SimilarArtists';
+import Footer from '../Footer/Footer';
 
 class App extends Component {
   constructor(props) {
@@ -47,9 +49,13 @@ class App extends Component {
   
   render() {
     return (
-      <div>
+      <div id="content">
+        <Header />
         <SearchBar 
           searchItem={this.searchItem}/>
+        {this.state.searchPoint === '' ?
+          <p>Enter search term above</p>
+        : null}
         {this.state.searchPoint === 'items' ? 
           <SearchResults 
             searchTerm={this.state.searchTerm}
@@ -62,6 +68,7 @@ class App extends Component {
             searchTerm={this.state.searchArtist}
             artists={this.state.artists} /> 
         : null}
+        <Footer />
       </div>
     );
   }

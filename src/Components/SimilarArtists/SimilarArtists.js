@@ -4,7 +4,7 @@ const SimilarArtists = (props) => {
   const artists = props.artists.map(artist => {
     return (
       <li key={artist.id}>
-        {artist.name} | {artist.genres.join(', ')}
+        <a href={artist.url} target="_blank" rel="noopener noreferrer">{artist.name}</a> | {artist.genres.join(', ')}
       </li>
     )
   })

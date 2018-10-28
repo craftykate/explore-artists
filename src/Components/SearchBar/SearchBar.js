@@ -17,7 +17,7 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div>
+      <div id="searchBar">
         <input onChange={this.handleTermChange} placeholder="Enter item to search" />
         {/* eslint-disable-next-line */ }
         <a onClick={this.search} className="searchButton">Search</a>
