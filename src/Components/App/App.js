@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
 import Spotify from '../../util/Spotify';
+import SearchBar from '../SearchBar/SearchBar';
+import SearchResults from '../SearchResults/SearchResults';
+import SimilarArtists from '../SimilarArtists/SimilarArtists';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      searchTerm: '',
+      searchArtist: '',
+      searchPoint: '',
+      searchItems: [[], []],
       artists: []
     }
   }
@@ -13,28 +20,48 @@ class App extends Component {
   componentDidMount() {
     const checkWindow = window.location.href.match(/access_token=([^&]*)/);
     if (checkWindow !== null) {
-      this.searchForSimilarArtists(sessionStorage.getItem("artistID"));
+      this.searchItem(sessionStorage.getItem("searchItem"));
     }
   }
 
-  searchForSimilarArtists = (artistID) => {
-    sessionStorage.setItem("artistID", artistID);
+  searchItem = (searchTerm) => {
+    sessionStorage.setItem("searchItem", searchTerm);
+    Spotify.searchItems(searchTerm).then(items => {
+      this.setState({
+        searchTerm: searchTerm,
+        searchPoint: 'items',
+        searchItems: items
+      })
+    })
+  }
+
+  searchForSimilarArtists = (artistID, artistName) => {
     Spotify.getSimilarArtists(artistID).then(artists => {
       this.setState({
+        searchArtist: artistName,
+        searchPoint: 'artists',
         artists: artists
       })
     })
   }
   
   render() {
-    const artists = this.state.artists.map(artist => <li key={artist.id}>{artist.name}</li>);
-
     return (
       <div>
-        <p onClick={() => this.searchForSimilarArtists('43ZHCT0cAZBISjO8DG9PnE')}>Search for Similar Artists</p>
-        <ul>
-          {artists}
-        </ul>
+        <SearchBar 
+          searchItem={this.searchItem}/>
+        {this.state.searchPoint === 'items' ? 
+          <SearchResults 
+            searchTerm={this.state.searchTerm}
+            artists={this.state.searchItems[0]} 
+            tracks={this.state.searchItems[1]} 
+            searchArtist={this.searchForSimilarArtists} /> 
+        : null}
+        {this.state.searchPoint === 'artists' ?
+          <SimilarArtists
+            searchTerm={this.state.searchArtist}
+            artists={this.state.artists} /> 
+        : null}
       </div>
     );
   }

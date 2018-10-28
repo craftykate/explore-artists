@@ -11,15 +11,40 @@ let expires_in;
 
 let Spotify = {
 
+  searchItems(searchTerm) {
+    const link = `${spotifyLink}/search?type=artist,track&q=${searchTerm}`;
+
+    return this.fetchGET(link).then(jsonResponse => {
+      // console.log(jsonResponse);
+      const artists = jsonResponse.artists.items.map(artist => {
+        return {
+          id: artist.id,
+          name: artist.name
+        }
+      });
+      const tracks = jsonResponse.tracks.items.map(track => {
+        return {
+          artistID: track.artists[0].id,
+          artistName: track.artists[0].name,
+          trackName: track.name,
+          trackID: track.id
+        }
+      });
+      return [artists, tracks]
+    })
+  },
+
   getSimilarArtists(artistID) {
     const link = `${spotifyLink}/artists/${artistID}/related-artists`;
 
     return this.fetchGET(link).then(jsonResponse => {
       if (jsonResponse) {
+        console.log(jsonResponse)
         return jsonResponse.artists.map(artist => {
           return {
             id: artist.id,
-            name: artist.name
+            name: artist.name,
+            genres: artist.genres
           }
         })
       } else {
