@@ -6,6 +6,7 @@ const redirectLink = secret.redirectLink;
 const spotifyLink = `https://api.spotify.com/v1`;
 const scopes = `user-modify-playback-state%20playlist-modify-public`;
 
+// let accessToken = (sessionStorage.getItem("accessToken") !== null ? sessionStorage.getItem("accessToken") : '');
 let accessToken = '';
 let expires_in;
 
@@ -15,22 +16,25 @@ let Spotify = {
     const link = `${spotifyLink}/search?type=artist,track&q=${searchTerm}`;
 
     return this.fetchGET(link).then(jsonResponse => {
-      // console.log(jsonResponse);
-      const artists = jsonResponse.artists.items.map(artist => {
-        return {
-          id: artist.id,
-          name: artist.name
-        }
-      });
-      const tracks = jsonResponse.tracks.items.map(track => {
-        return {
-          artistID: track.artists[0].id,
-          artistName: track.artists[0].name,
-          trackName: track.name,
-          trackID: track.id
-        }
-      });
-      return [artists, tracks]
+      if (jsonResponse) {
+        const artists = jsonResponse.artists.items.map(artist => {
+          return {
+            id: artist.id,
+            name: artist.name
+          }
+        });
+        const tracks = jsonResponse.tracks.items.map(track => {
+          return {
+            artistID: track.artists[0].id,
+            artistName: track.artists[0].name,
+            trackName: track.name,
+            trackID: track.id
+          }
+        });
+        return [artists, tracks]
+      } else {
+        return [[],[]]
+      }
     })
   },
 
@@ -62,8 +66,7 @@ let Spotify = {
     if (accessToken) {
       return accessToken;
     } else if (checkToken) {
-      this.getTokenInfo() // Make this a promise so access token doesn't return before it's done?
-      return accessToken;
+      return this.getTokenInfo();
     } else {
       window.location = `https://accounts.spotify.com/authorize?client_id=${clientID}&redirect_uri=${redirectLink}&scope=${scopes}&response_type=token&state=state`
     }
@@ -73,7 +76,11 @@ let Spotify = {
   getTokenInfo() {
     accessToken = window.location.href.match(/access_token=([^&]*)/)[1];
     expires_in = window.location.href.match(/expires_in=([^&]*)/)[1];
-    window.setTimeout(() => accessToken = '', expires_in * 1000);
+    // sessionStorage.setItem("accessToken", accessToken)
+    window.setTimeout(() => {
+      accessToken = '';
+      // sessionStorage.removeItem("accessToken")
+    }, expires_in * 1000);
     window.history.pushState('Access Token', null, '/');
     return accessToken;
   },

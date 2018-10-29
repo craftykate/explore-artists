@@ -11,16 +11,33 @@ class SearchBar extends Component {
     })
   }
 
+  logIn = () => {
+    this.props.logIn();
+  }
+
   search = () => {
     this.props.searchItem(this.state.searchTerm);
   }
 
   render() {
-    return (
+    let searchFields = (
       <div id="searchBar">
-        <input onChange={this.handleTermChange} placeholder="Enter item to search" />
-        {/* eslint-disable-next-line */ }
-        <a onClick={this.search} className="searchButton">Search</a>
+        {/* eslint-disable-next-line */}
+        <a onClick={this.logIn} className="searchButton">Log In to Spotify</a>
+      </div>
+    );
+    if (this.props.loggedIn) {
+      searchFields = (
+        <div id="searchBar">
+          <input onChange={this.handleTermChange} placeholder="Enter item to search" />
+          {/* eslint-disable-next-line */ }
+          <a onClick={this.search} className="searchButton">Search</a>
+        </div>
+      )
+    }
+    return (
+      <div>
+        {searchFields}
       </div>
     )
   }
