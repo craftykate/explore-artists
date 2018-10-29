@@ -22,12 +22,12 @@
 			text-align: center;
 			font: {
 				size: 6em;
-				weight: bold;
+				weight: 800;
 			}
 		}
 		h2 {
 			margin: 0 auto;
-			width: 60%;
+			width: 380px;
 			font-size: 3em;
 			display: flex;
 			flex-direction: row;
@@ -65,6 +65,7 @@
 		margin: 0 auto;
 		padding: 20px;
 		width: 90%;
+		min-width: 435px;
 		max-width: 600px;
 		background-color: white;
 		border-radius: 0 0 20px 20px;
@@ -91,6 +92,10 @@
 			.searchButton {
 				transform: translate(0, -4px);
 				@include button;
+				margin-right: 10px;
+				&.login {
+					transform: translate(0,0);
+				}
 			}
 		}
 	}

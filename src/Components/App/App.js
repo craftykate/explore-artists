@@ -54,6 +54,13 @@ class App extends Component {
       })
     })
   }
+
+  clearResults = () => {
+    this.setState({
+      searchTerm: '',
+      searchPoint: ''
+    })
+  }
   
   render() {
     return (
@@ -62,8 +69,10 @@ class App extends Component {
         <SearchBar 
           loggedIn={this.state.loggedIn}
           logIn={this.logIn}
-          searchItem={this.searchItem}/>
+          searchItem={this.searchItem}
+          clear={this.clearResults} />
         <Results 
+          loggedIn={this.state.loggedIn}
           searchPoint={this.state.searchPoint}
           searchTerm={this.state.searchTerm} 
           artists={this.state.searchItems[0]}

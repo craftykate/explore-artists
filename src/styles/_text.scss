@@ -23,6 +23,9 @@
 		margin-bottom: 1em;
 		line-height:120%;
 		text-align:justify;
+		&.strong {
+			font-weight: 700;
+		}
 	}
 
 	a {
@@ -43,6 +46,6 @@
 	}
 
 	strong {
-		font-weight:bold;
+		font-weight: bold;
 	}
 //*============END TEXT STYLING============*/

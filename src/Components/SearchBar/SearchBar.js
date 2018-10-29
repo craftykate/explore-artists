@@ -16,6 +16,9 @@ class SearchBar extends Component {
   }
 
   search = () => {
+    this.setState({
+      searchTerm: ''
+    })
     this.props.searchItem(this.state.searchTerm);
   }
 
@@ -23,15 +26,22 @@ class SearchBar extends Component {
     let searchFields = (
       <div id="searchBar">
         {/* eslint-disable-next-line */}
-        <a onClick={this.logIn} className="searchButton">Log In to Spotify</a>
+        <a onClick={this.logIn} className="searchButton login">Log In to Spotify</a>
       </div>
     );
     if (this.props.loggedIn) {
       searchFields = (
         <div id="searchBar">
-          <input onChange={this.handleTermChange} placeholder="Enter item to search" />
+          <input 
+            onChange={this.handleTermChange}
+            placeholder="Artist/song" 
+            value={this.state.searchTerm}/>
+
           {/* eslint-disable-next-line */ }
           <a onClick={this.search} className="searchButton">Search</a>
+
+          {/* eslint-disable-next-line */}
+          <a onClick={this.props.clear}>(clear)</a>
         </div>
       )
     }
