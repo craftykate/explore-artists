@@ -60,11 +60,13 @@ let Spotify = {
 
     return this.fetchGET(link).then(jsonResponse => {
       if (jsonResponse) {
+        console.log(jsonResponse)
         return jsonResponse.artists.map(artist => {
           return {
             id: artist.id,
             name: artist.name,
             genres: artist.genres,
+            thumbnail: artist.images,
             url: artist.external_urls.spotify
           }
         })
