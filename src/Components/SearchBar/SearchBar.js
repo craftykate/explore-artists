@@ -26,7 +26,7 @@ class SearchBar extends Component {
     let searchFields = (
       <div id="searchBar">
         {/* eslint-disable-next-line */}
-        <a onClick={this.logIn} className="searchButton login">Log In to Spotify</a>
+        <a onClick={this.logIn} className="searchButton login">Log in to Spotify</a>
       </div>
     );
     if (this.props.loggedIn) {
