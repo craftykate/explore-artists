@@ -11,6 +11,12 @@ class SearchBar extends Component {
     })
   }
 
+  checkIfEnter = (e) => {
+    if (e.key === 'Enter') {
+      this.search();
+    }
+  }
+
   logIn = () => {
     this.props.logIn();
   }
@@ -34,8 +40,10 @@ class SearchBar extends Component {
         <div id="searchBar">
           <input 
             onChange={this.handleTermChange}
+            onKeyPress={this.checkIfEnter}
             placeholder="Artist/song" 
-            value={this.state.searchTerm}/>
+            value={this.state.searchTerm}
+            autoFocus />
 
           {/* eslint-disable-next-line */ }
           <a onClick={this.search} className="searchButton">Search</a>
