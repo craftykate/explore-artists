@@ -1,7 +1,7 @@
 @import '../../styles/colors';
 
 #results {
-  padding: 20px 20px 10px 20px;
+  padding: 20px 0 10px 0;
   .instructions {
     p {
       margin-bottom: 10px;
@@ -19,4 +19,45 @@
       }
     }
   }
+  h2 {
+    text-align: center;
+    font-size: 2em;
+    font-weight: 500;
+  }
+  h3 {
+    color: $main;
+    font-size: 1.5em;
+    margin-top: 10px;
+    font-weight: 500;
+  }
+  ul {
+    margin-bottom: 20px;
+  }
+  li {
+    padding: 5px 0;
+    border-bottom: 1px solid $main;
+  }
+  div.thumbnail {
+    margin: 0 20px 0 0;
+    width: 60px;
+    float: left;
+    img {
+      border-radius: 50%;
+      width: 60px;
+    }
+  }
+  a.artist {
+    display: block;
+    font-size: 1.2em;
+  }
+  a.trackArtists {
+    // display: inline-block;
+    &:not(:first-child) {
+      &::before {
+        content: " | ";
+        color: $text;
+      }
+    }
+  }
+
 }

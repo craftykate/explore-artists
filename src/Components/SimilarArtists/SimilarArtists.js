@@ -10,7 +10,8 @@ const SimilarArtists = (props) => {
   })
   return (
     <div>
-      <h2>{props.searchTerm}</h2>
+      <h2>Related to: {props.artistInfo.name}</h2>
+      <p>{props.artistInfo.genres.join(', ')}</p>
       <ul>
         {artists}
       </ul>

@@ -10,12 +10,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchTerm: '',
-      searchArtist: '',
-      searchPoint: '',
-      searchItems: [],
-      artists: [],
-      loggedIn: false
+      searchTerm: '', // what the user initially searched for
+      artistInfo: {}, // the name and genres of the artist the user wants to find similar artists to
+      searchPoint: '', // 'items' if the user is looking at the initial search results and 'artists' if they are looking at similar artist results
+      searchItems: [[],[]], // array[0] are artists matching the search term, array[1] are tracks matching the search term
+      artists: [], // array of similar artists
+      loggedIn: false // toggles input field
     }
   }
 
@@ -35,7 +35,6 @@ class App extends Component {
   }
 
   searchItem = (searchTerm) => {
-    // sessionStorage.setItem("searchItem", searchTerm);
     Spotify.searchItems(searchTerm).then(items => {
       this.setState({
         searchTerm: searchTerm,
@@ -45,12 +44,14 @@ class App extends Component {
     })
   }
 
-  searchForSimilarArtists = (artistID, artistName) => {
-    Spotify.getSimilarArtists(artistID).then(artists => {
-      this.setState({
-        searchArtist: artistName,
-        searchPoint: 'artists',
-        artists: artists
+  searchForSimilarArtists = (artistID) => {
+    Spotify.getArtistInfo(artistID).then(info => {
+      Spotify.getSimilarArtists(artistID).then(artists => {
+        this.setState({
+          artistInfo: {name: info.name, genres: info.genres},
+          searchPoint: 'artists',
+          artists: artists
+        })
       })
     })
   }
@@ -75,6 +76,7 @@ class App extends Component {
           loggedIn={this.state.loggedIn}
           searchPoint={this.state.searchPoint}
           searchTerm={this.state.searchTerm} 
+          artistInfo={this.state.artistInfo}
           artists={this.state.searchItems[0]}
           tracks={this.state.searchItems[1]}
           searchArtist={this.searchForSimilarArtists}

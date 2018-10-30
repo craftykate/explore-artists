@@ -20,15 +20,17 @@ let Spotify = {
         const artists = jsonResponse.artists.items.map(artist => {
           return {
             id: artist.id,
-            name: artist.name
+            name: artist.name,
+            thumbnail: artist.images,
+            genres: artist.genres
           }
         });
         const tracks = jsonResponse.tracks.items.map(track => {
           return {
-            artistID: track.artists[0].id,
-            artistName: track.artists[0].name,
+            artists: track.artists,
             trackName: track.name,
-            trackID: track.id
+            trackID: track.id,
+            thumbnail: track.album.images
           }
         });
         return [artists, tracks]
@@ -38,12 +40,26 @@ let Spotify = {
     })
   },
 
+  getArtistInfo(artistID) {
+    const link = `${spotifyLink}/artists/${artistID}`;
+
+    return this.fetchGET(link).then(jsonResponse => {
+      if (jsonResponse) {
+       return {
+          name: jsonResponse.name,
+          genres: jsonResponse.genres
+        }
+      } else {
+        return [];
+      }
+    })
+  },
+
   getSimilarArtists(artistID) {
     const link = `${spotifyLink}/artists/${artistID}/related-artists`;
 
     return this.fetchGET(link).then(jsonResponse => {
       if (jsonResponse) {
-        // console.log(jsonResponse)
         return jsonResponse.artists.map(artist => {
           return {
             id: artist.id,

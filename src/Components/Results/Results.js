@@ -25,6 +25,7 @@ const Results = (props) => {
   )
   const similarArtists = (
     <SimilarArtists
+      artistInfo={props.artistInfo}
       searchTerm={props.searchTerm}
       artists={props.similarArtists} />
   )

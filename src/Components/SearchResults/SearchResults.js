@@ -1,30 +1,57 @@
 import React from 'react';
 
 const SearchResults = (props) => {
-  const artists = props.artists.map(artist => {
-    return (
-      <li key={artist.id}>
-        {/* eslint-disable-next-line */}
-        <a onClick={() => props.searchArtist(artist.id, artist.name)}>
-          {artist.name}
-        </a>
-      </li>
-    )
-  })
-  const tracks = props.tracks.map(track => {
-    return (
-      <li key={track.trackID}>
-        {/* eslint-disable-next-line */}
-        {track.trackName} : <a onClick={() => props.searchArtist(track.artistID, track.artistName)}>
-          {track.artistName}
-        </a>
-      </li>
-    )
-  })
+  let artists = "No Results";
+  if (props.artists.length !== 0) {
+    artists = props.artists.map(artist => {
+
+      let image = null;
+      if (artist.thumbnail.length > 0) {
+        image = <img src={artist.thumbnail[2].url} alt="artist thumbnail" className="thumbnail" />
+      }
+
+      return (
+        <li key={artist.id} className="artist">
+          <div className="thumbnail">{image}</div>
+          {/* eslint-disable-next-line */}
+          <a onClick={() => props.searchArtist(artist.id)} className="artist">
+            {artist.name}
+          </a>
+          Genres: {artist.genres.join(', ')}
+          <div className="clear"></div>
+        </li>
+      )
+    })
+  }
+
+  let tracks = "No Results";
+  if (props.tracks.length !== 0) {
+    tracks = props.tracks.map(track => {
+      let image = null;
+      if (track.thumbnail.length > 0) {
+        image = <img src={track.thumbnail[2].url} alt="album thumbnail" className="thumbnail" />
+      }
+      const artists = track.artists.map(artist => {
+        return (
+          /* eslint-disable-next-line */ 
+          <a onClick={() => props.searchArtist(artist.id)} key={artist.id} className="trackArtists">{artist.name}</a>
+        )
+      })
+      return (
+        <li key={track.trackID}>
+          <div className="thumbnail">{image}</div>
+          {/* eslint-disable-next-line */}
+          {track.trackName} {artists}
+          <div className="clear"></div>
+        </li>
+      )
+    })
+  }
 
   return (
     <div>
-      <h2>{props.searchTerm}</h2>
+      <h2>Searching: {props.searchTerm}</h2>
+      <p>Click an artist to find </p>
       <h3>Artist Results:</h3>
       <ul>
         {artists}
