@@ -1,7 +1,7 @@
 @import '../../styles/colors';
 
 #results {
-  padding: 20px 0 10px 0;
+  padding: 20px 0 0 0;
   .instructions {
     p {
       margin-bottom: 10px;
@@ -24,6 +24,9 @@
     font-size: 2em;
     font-weight: 500;
   }
+  p.instructions {
+    text-align: center;
+  }
   h3 {
     color: $main;
     font-size: 1.5em;
@@ -36,10 +39,14 @@
   li {
     padding: 5px 0;
     border-bottom: 1px solid $main;
+    .liContent {
+      margin-left: 70px;
+    }
   }
   div.thumbnail {
-    margin: 0 20px 0 0;
+    margin: 0;
     width: 60px;
+    min-height: 10px;
     float: left;
     img {
       border-radius: 50%;

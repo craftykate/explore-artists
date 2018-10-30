@@ -13,11 +13,13 @@ const SearchResults = (props) => {
       return (
         <li key={artist.id} className="artist">
           <div className="thumbnail">{image}</div>
-          {/* eslint-disable-next-line */}
-          <a onClick={() => props.searchArtist(artist.id)} className="artist">
-            {artist.name}
-          </a>
-          Genres: {artist.genres.join(', ')}
+          <div className="liContent">
+            {/* eslint-disable-next-line */}
+            <a onClick={() => props.searchArtist(artist.id)} className="artist">
+              {artist.name}
+            </a>
+            Genres: {artist.genres.join(', ')}
+          </div>
           <div className="clear"></div>
         </li>
       )
@@ -40,8 +42,10 @@ const SearchResults = (props) => {
       return (
         <li key={track.trackID}>
           <div className="thumbnail">{image}</div>
-          {/* eslint-disable-next-line */}
-          {track.trackName} {artists}
+          <div className="liContent">
+            {/* eslint-disable-next-line */}
+            {track.trackName} {artists}
+          </div>
           <div className="clear"></div>
         </li>
       )
@@ -51,7 +55,7 @@ const SearchResults = (props) => {
   return (
     <div>
       <h2>Searching: {props.searchTerm}</h2>
-      <p>Click an artist to find </p>
+      <p className="instructions">Choose an artist to get a list of similar artists</p>
       <h3>Artist Results:</h3>
       <ul>
         {artists}

@@ -11,7 +11,7 @@ const Results = (props) => {
   const instructions = (
     <div className="instructions">
       <p className="headline">Look up an artist and get a list of similar artists to explore!</p> 
-      <p>Enter a song or artist above {loginInstructions} and click the artist you want to explore.</p>
+      <p>Enter a song or artist above {loginInstructions} and choose the artist you want to explore.</p>
       <p>You'll get a list of similar artists and their genres that you can listen to on your own device - or keep clicking on artists to see more like them, or click their Spotify link to launch their music in Spotify.</p>
       <p className="background">I love music and I love exploring new artists. That can be hard sometimes if I don't know what I'm looking for, so I built this little app to give suggestions when I need some musical inspiration. I hope you enjoy it as much as I do.</p>
     </div>
