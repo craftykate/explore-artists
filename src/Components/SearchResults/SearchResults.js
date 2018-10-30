@@ -10,6 +10,12 @@ const SearchResults = (props) => {
         image = <img src={artist.thumbnail[2].url} alt="artist thumbnail" className="thumbnail" />
       }
 
+      let genres = null;
+      if (artist.genres.length > 0) {
+        genres = `Genres: ${ artist.genres.join(', ') }`
+
+      }
+
       return (
         <li key={artist.id} className="artist">
           <div className="thumbnail">{image}</div>
@@ -18,7 +24,7 @@ const SearchResults = (props) => {
             <a onClick={() => props.searchArtist(artist.id)} className="artist">
               {artist.name}
             </a>
-            Genres: {artist.genres.join(', ')}
+            {genres}
           </div>
           <div className="clear"></div>
         </li>

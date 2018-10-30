@@ -1,9 +1,6 @@
 # Explore New Artists
 
 ## To Do
-**Search Page**
-* Empty genres hide genre section on search results
-
 **Similar Artist Page**
 * Style similar main artist's genre section on similar artist page
 * Add artist picture to main artist on similar artist page
