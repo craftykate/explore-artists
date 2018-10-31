@@ -1,7 +1,16 @@
 import React from 'react';
 
 const SimilarArtists = (props) => {
+  // set up genres for main artist, if there are any
+  let genres = null;
+  if (props.artistInfo.genres.length > 0) {
+    genres = `Genres: ${props.artistInfo.genres.join(', ')}`
+  }
+
+  // loop through array of artists
   const artists = props.artists.map(artist => {
+
+    // set up image if there is one
     let image = null;
     if (artist.thumbnail.length > 2) {
       image = <img src={artist.thumbnail[2].url} alt="artist thumbnail" className="thumbnail" />
@@ -17,10 +26,11 @@ const SimilarArtists = (props) => {
       </li>
     )
   })
+
   return (
     <div>
       <h2>Related to: {props.artistInfo.name}</h2>
-      <p>{props.artistInfo.genres.join(', ')}</p>
+      <p className="instructions">{genres}Click on an artist to see their similar artists</p>
       <ul>
         {artists}
       </ul>

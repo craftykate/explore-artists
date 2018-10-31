@@ -13,6 +13,7 @@
 **General**
 * Add comments to code
 * Fill out README
+* Check if app re-logs in after timing out
 
 **Possible Features**
 * Clicking a genre on similar artist page looks up popular artists in that genre?

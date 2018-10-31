@@ -60,7 +60,6 @@ let Spotify = {
 
     return this.fetchGET(link).then(jsonResponse => {
       if (jsonResponse) {
-        console.log(jsonResponse)
         return jsonResponse.artists.map(artist => {
           return {
             id: artist.id,
