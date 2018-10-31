@@ -2,7 +2,7 @@
 
 #results {
   padding: 20px 0 0 0;
-  .instructions {
+  .welcome {
     p {
       margin-bottom: 10px;
       font-size: 1.2em;
@@ -19,18 +19,19 @@
       }
     }
   }
+  p.info {
+    text-align: center;
+  }
+  .instructions {
+    display: block;
+    color: lighten($text, 20%);
+    font-style: italic;
+    margin-bottom: 0;
+  }
   h2 {
     text-align: center;
     font-size: 2em;
     font-weight: 500;
-  }
-  p.info {
-    text-align: center;
-    .instructions {
-      display: block;
-      color: lighten($text, 20%);
-      font-style: italic;
-    }
   }
   h3 {
     color: $main;
@@ -70,5 +71,12 @@
       }
     }
   }
-
+  .mainArtist {
+    text-align: center;
+    img {
+      border-radius: 50%;
+      height: 60px;
+    }
+    
+  }
 }

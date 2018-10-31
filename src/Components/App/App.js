@@ -11,7 +11,7 @@ class App extends Component {
     super(props);
     this.state = {
       searchTerm: '', // what the user initially searched for
-      artistInfo: {}, // the name and genres of the artist the user wants to find similar artists to
+      artistInfo: {}, // the details of the artist the user wants to find similar artists to
       searchPoint: '', // 'items' if the user is looking at the initial search results and 'artists' if they are looking at similar artist results
       searchItems: [[],[]], // array[0] are artists matching the search term, array[1] are tracks matching the search term
       artists: [], // array of similar artists
@@ -52,7 +52,7 @@ class App extends Component {
     Spotify.getArtistInfo(artistID).then(info => {
       Spotify.getSimilarArtists(artistID).then(artists => {
         this.setState({
-          artistInfo: {name: info.name, genres: info.genres},
+          artistInfo: {...info},
           searchPoint: 'artists',
           artists: artists
         })

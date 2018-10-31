@@ -22,12 +22,26 @@ const SimilarArtists = (props) => {
     )
   })
 
+  // only show image if there is one
+  let image = null;
+  if (props.artistInfo.thumbnail.length > 2) {
+    image = <img src={props.artistInfo.thumbnail[2].url} alt="thumbnail" className="thumbnail" />
+  }
+
   return (
     <div>
       {/* scroll to top of page when loading similar artists */}
       {window.scrollTo(0,0)}
-      <h2>Related to: {props.artistInfo.name}</h2>
-      <p className="info">{genres}<span className="instructions">Click on an artist to see their similar artists</span></p>
+
+      {/* info on main artist */}
+      <div className="mainArtist">
+        <div className="title">{image}<h2>{props.artistInfo.name}</h2></div>
+        <p className="info">{genres}</p>
+      </div>
+
+      {/* list of similar artists */}
+      <h3>Similar Artists:</h3>
+      <p className="instructions">Click on an artist to explore their similar artists</p>
       <ul>
         {artists}
       </ul>

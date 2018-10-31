@@ -46,12 +46,15 @@ let Spotify = {
   // get info about artist being searched
   getArtistInfo(artistID) {
     const link = `${spotifyLink}/artists/${artistID}`;
-
+    
     return this.fetchGET(link).then(jsonResponse => {
+      console.log(jsonResponse)
       if (jsonResponse) {
        return {
           name: jsonResponse.name,
-          genres: jsonResponse.genres
+          genres: jsonResponse.genres,
+          thumbnail: jsonResponse.images,
+          url: jsonResponse.external_urls.spotify
         }
       } else {
         return [];
