@@ -1,4 +1,5 @@
 import React from 'react';
+import Listing from '../Listing/Listing';
 
 const SimilarArtists = (props) => {
   // set up genres for main artist, if there are any
@@ -7,23 +8,17 @@ const SimilarArtists = (props) => {
     genres = `Genres: ${props.artistInfo.genres.join(', ')}`
   }
 
-  // loop through array of artists
+  // show listings of similar artists
   const artists = props.artists.map(artist => {
-
-    // set up image if there is one
-    let image = null;
-    if (artist.thumbnail.length > 2) {
-      image = <img src={artist.thumbnail[2].url} alt="artist thumbnail" className="thumbnail" />
-    }
-
     return (
-      <li key={artist.id}>
-        <div className="thumbnail">{image}</div>
-        <div className="liContent">
-          <a href={artist.url} target="_blank" rel="noopener noreferrer">{artist.name}</a> | {artist.genres.join(', ')}
-        </div>
-        <div className="clear"></div>
-      </li>
+      <Listing
+        key={artist.id}
+        id={artist.id}
+        type={"similarArtist"}
+        thumbnail={artist.thumbnail}
+        name={artist.name}
+        genres={artist.genres}
+        searchArtist={props.searchArtist} />
     )
   })
 

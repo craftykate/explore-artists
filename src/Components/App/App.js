@@ -19,6 +19,7 @@ class App extends Component {
     }
   }
 
+  // if window loads and login info is in address bar, the user is logged in so change log in state so input fields are visible
   componentDidMount() {
     const checkWindow = window.location.href.match(/access_token=([^&]*)/);
     if (checkWindow !== null) {
@@ -28,12 +29,14 @@ class App extends Component {
     }
   }
 
+  // log in to spotify, set loggedIn state to something other than false
   logIn = () => {
     this.setState({
       loggedIn: Spotify.getAccessToken()
     })
   }
 
+  // initial search for artists and songs that match query
   searchItem = (searchTerm) => {
     Spotify.searchItems(searchTerm).then(items => {
       this.setState({
@@ -44,6 +47,7 @@ class App extends Component {
     })
   }
 
+  // search for similar artists
   searchForSimilarArtists = (artistID) => {
     Spotify.getArtistInfo(artistID).then(info => {
       Spotify.getSimilarArtists(artistID).then(artists => {
@@ -56,6 +60,7 @@ class App extends Component {
     })
   }
 
+  // reset search terms
   clearResults = () => {
     this.setState({
       searchTerm: '',

@@ -5,22 +5,26 @@ class SearchBar extends Component {
     searchTerm: ''
   }
 
+  // log in to spotify when login button is clicked
+  logIn = () => {
+    this.props.logIn();
+  }
+
+  // update search term as user types
   handleTermChange = (e) => {
     this.setState({
       searchTerm: e.target.value
     })
   }
 
+  // if 'Enter' key is pressed perform search
   checkIfEnter = (e) => {
     if (e.key === 'Enter') {
       this.search();
     }
   }
 
-  logIn = () => {
-    this.props.logIn();
-  }
-
+  // reset search state (so input field is empty) and do search
   search = () => {
     this.setState({
       searchTerm: ''
@@ -29,12 +33,16 @@ class SearchBar extends Component {
   }
 
   render() {
+
+    // if not logged in show Log in button
     let searchFields = (
       <div id="searchBar">
         {/* eslint-disable-next-line */}
         <a onClick={this.logIn} className="searchButton login">Log in to Spotify</a>
       </div>
     );
+
+    // if logged in, show input field and search button
     if (this.props.loggedIn) {
       searchFields = (
         <div id="searchBar">
@@ -53,6 +61,7 @@ class SearchBar extends Component {
         </div>
       )
     }
+    
     return (
       <div>
         {searchFields}

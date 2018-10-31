@@ -6,17 +6,18 @@ const redirectLink = secret.redirectLink;
 const spotifyLink = `https://api.spotify.com/v1`;
 const scopes = `user-modify-playback-state%20playlist-modify-public`;
 
-// let accessToken = (sessionStorage.getItem("accessToken") !== null ? sessionStorage.getItem("accessToken") : '');
 let accessToken = '';
 let expires_in;
 
 let Spotify = {
 
+  // get tracks and artists matching user's search term
   searchItems(searchTerm) {
     const link = `${spotifyLink}/search?type=artist,track&q=${searchTerm}`;
 
     return this.fetchGET(link).then(jsonResponse => {
       if (jsonResponse) {
+        // get marching artists
         const artists = jsonResponse.artists.items.map(artist => {
           return {
             id: artist.id,
@@ -25,6 +26,7 @@ let Spotify = {
             genres: artist.genres
           }
         });
+        // get matching tracks
         const tracks = jsonResponse.tracks.items.map(track => {
           return {
             artists: track.artists,
@@ -33,6 +35,7 @@ let Spotify = {
             thumbnail: track.album.images
           }
         });
+        // return both as array in one return statement
         return [artists, tracks]
       } else {
         return [[],[]]
@@ -40,6 +43,7 @@ let Spotify = {
     })
   },
 
+  // get info about artist being searched
   getArtistInfo(artistID) {
     const link = `${spotifyLink}/artists/${artistID}`;
 
@@ -55,6 +59,7 @@ let Spotify = {
     })
   },
 
+  // get list of similar artists
   getSimilarArtists(artistID) {
     const link = `${spotifyLink}/artists/${artistID}/related-artists`;
 
@@ -93,10 +98,8 @@ let Spotify = {
   getTokenInfo() {
     accessToken = window.location.href.match(/access_token=([^&]*)/)[1];
     expires_in = window.location.href.match(/expires_in=([^&]*)/)[1];
-    // sessionStorage.setItem("accessToken", accessToken)
     window.setTimeout(() => {
       accessToken = '';
-      // sessionStorage.removeItem("accessToken")
     }, expires_in * 1000);
     window.history.pushState('Access Token', null, '/');
     return accessToken;
