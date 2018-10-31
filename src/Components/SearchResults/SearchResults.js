@@ -40,7 +40,7 @@ const SearchResults = (props) => {
   return (
     <div>
       <h2>Searching: {props.searchTerm}</h2>
-      <p className="instructions">Choose an artist to get a list of similar artists</p>
+      <p className="info"><span className="instructions">Choose an artist to get a list of similar artists</span></p>
       <h3>Artist Results:</h3>
       <ul>
         {artists}

@@ -24,8 +24,10 @@ const SimilarArtists = (props) => {
 
   return (
     <div>
+      {/* scroll to top of page when loading similar artists */}
+      {window.scrollTo(0,0)}
       <h2>Related to: {props.artistInfo.name}</h2>
-      <p className="instructions">{genres}Click on an artist to see their similar artists</p>
+      <p className="info">{genres}<span className="instructions">Click on an artist to see their similar artists</span></p>
       <ul>
         {artists}
       </ul>

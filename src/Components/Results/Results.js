@@ -34,7 +34,8 @@ const Results = (props) => {
     <SimilarArtists
       artistInfo={props.artistInfo}
       searchTerm={props.searchTerm}
-      artists={props.similarArtists} />
+      artists={props.similarArtists}
+      searchArtist={props.searchArtist} />
   )
 
   return (

@@ -2,8 +2,6 @@
 
 ## To Do
 **Similar Artist Page**
-* Jump to top of page when loading after search 
-* Style similar main artist's genre section on similar artist page
 * Add artist picture to main artist on similar artist page
 * Clicking a similar artist redoes search
 * Add spotify link to similar artist
@@ -12,7 +10,6 @@
 * Get more similar artists and paginate
 
 **General**
-* Add comments to code
 * Fill out README
 * Check if app re-logs in after timing out
 

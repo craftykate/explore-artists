@@ -24,8 +24,13 @@
     font-size: 2em;
     font-weight: 500;
   }
-  p.instructions {
+  p.info {
     text-align: center;
+    .instructions {
+      display: block;
+      color: lighten($text, 20%);
+      font-style: italic;
+    }
   }
   h3 {
     color: $main;
@@ -58,7 +63,6 @@
     font-size: 1.2em;
   }
   a.trackArtists {
-    // display: inline-block;
     &:not(:first-child) {
       &::before {
         content: " | ";
