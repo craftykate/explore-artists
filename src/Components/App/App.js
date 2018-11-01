@@ -5,6 +5,7 @@ import Header from '../Header/Header';
 import SearchBar from '../SearchBar/SearchBar';
 import Results from '../Results/Results';
 import Footer from '../Footer/Footer';
+import ReactGA from 'react-ga';
 
 class App extends Component {
   constructor(props) {
@@ -75,6 +76,11 @@ class App extends Component {
     this.setState({
       playerVisibility: newState
     })
+  }
+
+  initializeReactGA() {
+    ReactGA.initialize('UA-1632848-20');
+    ReactGA.pageview('/homepage');
   }
   
   render() {

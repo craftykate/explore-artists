@@ -2,7 +2,6 @@
 
 ## To Do
 **General**
-* Add analytics
 * Hide log in button if logged in!
 * Check if app re-logs in after timing out
 * Fill out README
