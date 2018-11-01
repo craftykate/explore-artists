@@ -7,7 +7,7 @@ const Results = (props) => {
   // show log in phrase if user not logged in
   let loginInstructions = null;
   if (!props.loggedIn) {
-    loginInstructions = '(log in first)'
+    loginInstructions = '(log in with a free Spotify account first)'
   }
 
   // app instructions

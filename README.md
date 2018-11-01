@@ -2,7 +2,7 @@
 
 ## To Do
 **Similar Artist Page**
-* Add spotify link to similar artists and main artist
+* Break similarartists component into separate components
 * Get more similar artists and paginate
 * Hide player on mobile if it doesn't show up or isn't supported
 

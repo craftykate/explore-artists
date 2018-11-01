@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Listing from '../Listing/Listing';
-import Player from '../Player/Player';
+import MainArtist from '../MainArtist/MainArtist';
+
 
 class SimilarArtists extends Component {
 
@@ -12,29 +13,6 @@ class SimilarArtists extends Component {
   }
   
   render() {
-    // show image for main artist if there is one
-    let image = null;
-    if (this.props.artistInfo.thumbnail.length > 2) {
-      image = <img src={this.props.artistInfo.thumbnail[2].url} alt="thumbnail" className="thumbnail" />
-    }
-  
-    // set up genres for main artist, if there are any
-    let genres = null;
-    if (this.props.artistInfo.genres.length > 0) {
-      genres = `Genres: ${this.props.artistInfo.genres.join(', ')}`
-    }
-  
-    // toggle link for showing/hiding player
-    let playerLink;
-    if (this.props.visibility) {
-      playerLink = "Hide player"
-    } else {
-      playerLink = "Show popular songs"
-    }
-    
-    // link for popular songs player
-    const popularSongs = `https://open.spotify.com/embed/artist/${this.props.artistInfo.id}`;
-  
     // show listings of similar artists
     const artists = this.props.artists.map(artist => {
       return (
@@ -47,23 +25,16 @@ class SimilarArtists extends Component {
           genres={artist.genres}
           searchArtist={this.props.searchArtist} />
       )
-    })
+    });
+
     return (
       <div>
-        {/* info on main artist */}
-        <div className="mainArtist">
-          <div className="title">{image}<h2>{this.props.artistInfo.name}</h2></div>
-          <p className="info">
-            {genres}
-            {/* eslint-disable-next-line */}
-            <a onClick={this.props.togglePlayer} className="playerLink">{playerLink}</a>
-            <Player
-              artistID={this.props.artistInfo.id}
-              popularSongs={popularSongs}
-              visibility={this.props.visibility} />
-          </p>
-        </div>
-
+        {/* show info on main artist */}
+        <MainArtist
+          artistInfo={this.props.artistInfo} 
+          togglePlayer={this.props.togglePlayer} 
+          visibility={this.props.visibility} />
+          
         {/* list of similar artists */}
         <h3>Similar Artists:</h3>
         <p className="instructions">Click on an artist to explore their similar artists</p>
