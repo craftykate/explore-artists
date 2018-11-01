@@ -2,7 +2,6 @@
 
 ## To Do
 **Similar Artist Page**
-* Don't go to top of page if player is loaded
 * Add spotify link to similar artists and main artist
 * Get more similar artists and paginate
 * Hide player on mobile if it doesn't show up or isn't supported
