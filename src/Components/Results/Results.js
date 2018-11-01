@@ -35,7 +35,9 @@ const Results = (props) => {
       artistInfo={props.artistInfo}
       searchTerm={props.searchTerm}
       artists={props.similarArtists}
-      searchArtist={props.searchArtist} />
+      searchArtist={props.searchArtist}
+      togglePlayer={props.togglePlayer}
+      visibility={props.visibility} />
   )
 
   return (

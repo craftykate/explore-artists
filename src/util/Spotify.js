@@ -48,10 +48,10 @@ let Spotify = {
     const link = `${spotifyLink}/artists/${artistID}`;
     
     return this.fetchGET(link).then(jsonResponse => {
-      console.log(jsonResponse)
       if (jsonResponse) {
        return {
           name: jsonResponse.name,
+          id: jsonResponse.id,
           genres: jsonResponse.genres,
           thumbnail: jsonResponse.images,
           url: jsonResponse.external_urls.spotify

@@ -2,16 +2,19 @@
 
 ## To Do
 **Similar Artist Page**
+* Don't go to top of page if player is loaded
 * Add spotify link to similar artists and main artist
 * Get more similar artists and paginate
+* Hide player on mobile if it doesn't show up or isn't supported
 
 **General**
 * Make all image links the first in the array
 * Fill out README
+* Hide log in button if logged in!
 * Check if app re-logs in after timing out
+* Add analytics
 
 **Possible Features**
-* Similar artists have a couple clips of popular songs? Or "popular songs" link displays some in the app?
 * Clicking a genre on similar artist page looks up popular artists in that genre?
 * Add section to footer to look up song by lyrics?
 * Actually play songs in app?
