@@ -9,6 +9,7 @@
 # production
 /build
 secret.js
+CNAME
 
 # misc
 .DS_Store

@@ -3,8 +3,8 @@ import React from 'react';
 const Listing = (props) => {
   // only show image if there is one
   let image = null;
-  if (props.thumbnail.length > 2) {
-    image = <img src={props.thumbnail[2].url} alt="thumbnail" className="thumbnail" />
+  if (props.thumbnail.length > 0) {
+    image = <img src={props.thumbnail[0].url} alt="thumbnail" className="thumbnail" />
   }
 
   // only show genres if there are any
