@@ -7,6 +7,9 @@ import Results from '../Results/Results';
 import Footer from '../Footer/Footer';
 import ReactGA from 'react-ga';
 
+ReactGA.initialize('UA-1632848-20');
+ReactGA.pageview('app');
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -81,7 +84,6 @@ class App extends Component {
   render() {
     return (
       <div id="content">
-        {ReactGA.initialize('UA-1632848-20')}
         <Header />
         <SearchBar 
           loggedIn={this.state.loggedIn}
