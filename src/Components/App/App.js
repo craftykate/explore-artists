@@ -77,15 +77,11 @@ class App extends Component {
       playerVisibility: newState
     })
   }
-
-  initializeReactGA() {
-    ReactGA.initialize('UA-1632848-20');
-    ReactGA.pageview('/homepage');
-  }
   
   render() {
     return (
       <div id="content">
+        {ReactGA.initialize('UA-1632848-20')}
         <Header />
         <SearchBar 
           loggedIn={this.state.loggedIn}
