@@ -57,6 +57,16 @@
 				}
 			}
 		}
+		@media (max-width: 430px) {
+			h1 {
+				font-size: 4em;
+			}
+			h2 {
+				display: block;
+				text-align: center;
+				width: 100%;
+			}
+		}
 	}
 //*============ END HEADER ============*/
 
@@ -65,7 +75,6 @@
 		margin: 0 auto 40px auto;
 		padding: 20px;
 		width: 90%;
-		min-width: 435px;
 		max-width: 600px;
 		background-color: white;
 		border-radius: 0 0 20px 20px;
@@ -95,6 +104,21 @@
 				margin-right: 10px;
 				&.login {
 					transform: translate(0,0);
+				}
+			}
+		}
+		@media (max-width: 430px) {
+			width: 100%;
+			box-sizing: border-box;
+			#searchBar {
+				input {
+					display: block;
+					margin: 0 auto 20px auto;
+					width: 75%;
+					background-color: lighten($text, 50%);
+					&::placeholder {
+						color: white;
+					}
 				}
 			}
 		}

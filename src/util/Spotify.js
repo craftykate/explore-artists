@@ -6,7 +6,7 @@ const redirectLink = secret.redirectLink;
 const spotifyLink = `https://api.spotify.com/v1`;
 const scopes = `user-modify-playback-state%20playlist-modify-public`;
 
-let accessToken = '';
+let accessToken = false;
 let expires_in;
 
 let Spotify = {
@@ -81,6 +81,17 @@ let Spotify = {
         return []
       }
     })
+  },
+
+  checkIfLoggedIn() {
+    // check if url contains access token
+    const checkToken = window.location.href.match(/access_token=([^&]*)/);
+
+    if (accessToken) {
+      return accessToken;
+    } else if (checkToken) {
+      return this.getTokenInfo();
+    }
   },
 
   // get accesstoken from variable or url

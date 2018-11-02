@@ -7,8 +7,9 @@ import Results from '../Results/Results';
 import Footer from '../Footer/Footer';
 import ReactGA from 'react-ga';
 
-ReactGA.initialize('UA-1632848-20');
-ReactGA.pageview('app');
+// initialize google analytics
+// ReactGA.initialize('UA-1632848-20');
+// ReactGA.pageview('app');
 
 class App extends Component {
   constructor(props) {
@@ -19,17 +20,18 @@ class App extends Component {
       searchPoint: '', // 'items' if the user is looking at the initial search results and 'artists' if they are looking at similar artist results
       searchItems: [[],[]], // array[0] are artists matching the search term, array[1] are tracks matching the search term
       artists: [], // array of similar artists
-      loggedIn: false, // toggles input field
+      loggedIn: Spotify.checkIfLoggedIn(), // toggles input field
       playerVisibility: false // toggles media player visibility
     }
   }
 
-  // if window loads and login info is in address bar, the user is logged in so change log in state so input fields are visible
-  componentDidMount() {
-    const checkWindow = window.location.href.match(/access_token=([^&]*)/);
-    if (checkWindow !== null) {
+  // check if access code still good - if not get new code
+  componentWillUpdate() {
+    const loggedIn = Spotify.checkIfLoggedIn();
+
+    if (loggedIn !== this.state.loggedIn) {
       this.setState({
-        loggedIn: true
+        loggedIn: Spotify.checkIfLoggedIn()
       })
     }
   }
