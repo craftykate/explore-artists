@@ -11,11 +11,12 @@
         text-align: center; 
         font-weight: bold;
       }
-      &.background {
+      &.subwelcome {
         font-style: italic;
         color: lighten($text, 20%);
         font-size: 1em;
         margin-top: 20px;
+        margin-bottom: 15px;
       }
     }
   }

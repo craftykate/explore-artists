@@ -21,7 +21,6 @@ class App extends Component {
       searchItems: [[],[]], // array[0] are artists matching the search term, array[1] are tracks matching the search term
       artists: [], // array of similar artists
       loggedIn: Spotify.checkIfLoggedIn(), // toggles input field
-      playerVisibility: false // toggles media player visibility
     }
   }
 
@@ -74,14 +73,6 @@ class App extends Component {
       searchPoint: ''
     })
   }
-
-  // toggle visibility for media player
-  togglePlayer = () => {
-    let newState = !this.state.playerVisibility
-    this.setState({
-      playerVisibility: newState
-    })
-  }
   
   render() {
     return (
@@ -101,8 +92,6 @@ class App extends Component {
           tracks={this.state.searchItems[1]}
           searchArtist={this.searchForSimilarArtists}
           similarArtists={this.state.artists}
-          togglePlayer={this.togglePlayer}
-          visibility={this.state.playerVisibility}
           />
         <Footer />
       </div>

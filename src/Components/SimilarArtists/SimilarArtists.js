@@ -4,12 +4,35 @@ import MainArtist from '../MainArtist/MainArtist';
 
 
 class SimilarArtists extends Component {
-
-  // scroll to the top of the page if a new artist is loaded, DON'T scroll to the top if the player was revealed or shown - this is why this component is a class
-  componentDidUpdate(prevProps) {
-    if (this.props.visibility === prevProps.visibility) {
-      window.scrollTo(0, 0);
+  constructor(props) {
+    super(props);
+    this.state = {
+      visibility: false
     }
+  }
+
+  // scroll to the top of the page if component first loads or if a new artist was searched - not if it was updated because the player was dropped down. 
+  componentWillMount() {
+    window.scrollTo(0, 0);
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.visibility === prevState.visibility) {
+      window.scrollTo(0, 0);
+      // hide the player since new artist was searched
+      if (this.state.visibility) {
+        this.setState({
+          visibility: false
+        })
+      }
+    }
+  }  
+  
+  // toggle visibility for media player
+  togglePlayer = () => {
+    let newState = !this.state.visibility
+    this.setState({
+      visibility: newState
+    })
   }
   
   render() {
@@ -32,8 +55,8 @@ class SimilarArtists extends Component {
         {/* show info on main artist */}
         <MainArtist
           artistInfo={this.props.artistInfo} 
-          togglePlayer={this.props.togglePlayer} 
-          visibility={this.props.visibility} />
+          togglePlayer={this.togglePlayer} 
+          visibility={this.state.visibility} />
           
         {/* list of similar artists */}
         <h3>Similar Artists:</h3>
