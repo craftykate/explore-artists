@@ -4,6 +4,7 @@ Explore new artists and listen to their popular songs!
 See it live at https://exploreartists.surge.sh/
 
 ![](./public/exploreartists.png)
+![](./public/exploreartists1.png)
 
 ## Background
 I built this app for a bi-weekly coding challenge in a Codecademy group I'm in and ended up really liking it. I love listening to music and like exploring new music but the only way I listen to new bands is on Pandora or Amazon music and the selection is getting a little stale. So I wanted a new way to find new bands. When a challenge came up with "music" as the prompt I decided to find a way to explore new artists.
