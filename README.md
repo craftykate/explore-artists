@@ -3,7 +3,7 @@ Explore new artists and listen to their popular songs!
 
 See it live at https://exploreartists.surge.sh/
 
-![](./public/exploreartists0.png)
+![](./public/exploreartists00.png)
 ![](./public/exploreartists1.png)
 
 ## Background
