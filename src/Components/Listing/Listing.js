@@ -4,7 +4,11 @@ const Listing = (props) => {
   // only show image if there is one
   let image = null;
   if (props.thumbnail.length > 0) {
-    image = <img src={props.thumbnail[0].url} alt="thumbnail" className="thumbnail" />
+    if (props.type === 'artist' || props.type === 'similarArtist') {
+      image = <img src={props.thumbnail[0].url} alt="thumbnail" className="thumbnail" onClick={() => props.searchArtist(props.id)} style={{cursor: 'pointer'}}/>
+    } else {
+      image = <img src={props.thumbnail[0].url} alt="thumbnail" className="thumbnail" />
+    }
   }
 
   // only show genres if there are any
