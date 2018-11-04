@@ -8,19 +8,30 @@ import Footer from '../Footer/Footer';
 import ReactGA from 'react-ga';
 
 // initialize google analytics
-ReactGA.initialize('UA-1632848-20');
-ReactGA.pageview('app');
+// ReactGA.initialize('UA-1632848-20');
+// ReactGA.pageview('app');
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      recentArtists: [], // recently listened to artists
       searchTerm: '', // what the user initially searched for
       artistInfo: {}, // the details of the artist the user wants to find similar artists to
       searchPoint: '', // 'items' if the user is looking at the initial search results and 'artists' if they are looking at similar artist results
       searchItems: [[],[]], // array[0] are artists matching the search term, array[1] are tracks matching the search term
       artists: [], // array of similar artists
       loggedIn: Spotify.checkIfLoggedIn(), // toggles input field
+    }
+  }
+
+  componentWillMount() {
+    if (this.state.loggedIn) {
+      Spotify.getRecentArtists().then(recentArtists => {
+        this.setState({
+          recentArtists: recentArtists
+        })
+      })
     }
   }
 
@@ -92,6 +103,7 @@ class App extends Component {
           tracks={this.state.searchItems[1]}
           searchArtist={this.searchForSimilarArtists}
           similarArtists={this.state.artists}
+          recentArtists={this.state.recentArtists}
           />
         <Footer />
       </div>

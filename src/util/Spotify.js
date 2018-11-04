@@ -4,12 +4,33 @@ const clientID = secret.clientID;
 const redirectLink = secret.redirectLink;
 
 const spotifyLink = `https://api.spotify.com/v1`;
-const scopes = `user-modify-playback-state%20playlist-modify-public`;
+const scopes = `user-modify-playback-state%20playlist-modify-public%20user-read-recently-played`;
 
 let accessToken = false;
 let expires_in;
 
 let Spotify = {
+
+  getRecentArtists() {
+    const link = `${spotifyLink}/me/player/recently-played`;
+    let recentArtists = [];
+    let recentArtistsIDs = [];
+
+    return this.fetchGET(link).then(jsonResponse => {
+      if (jsonResponse) {
+        // go through each recently listened track
+        for (let track of jsonResponse.items) {
+          const newArtist = track.track.artists[0];
+          // if artist on next track is new, store it 
+          if (!recentArtistsIDs.includes(newArtist.id)) {
+            recentArtistsIDs.push(newArtist.id)
+            recentArtists.push(newArtist);
+          }
+        }
+        return recentArtistsIDs.slice(0,4);
+      }
+    })
+  },
 
   // get tracks and artists matching user's search term
   searchItems(searchTerm) {

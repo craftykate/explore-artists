@@ -17,7 +17,9 @@ I built this app in React, which I love. The app gets all its data from the Spot
 
 ## To Do
 * **Possible Features**
-* Add suggestions to home page
+* Does it break if there aren't four unique recent artists?
+* Hover over genres describes them??
+* Some sort of back button
 * Clicking a genre on similar artist page looks up popular artists in that genre?
 * Add section to footer to look up song by lyrics?
 * Make two tabs for search page with artist and song results?

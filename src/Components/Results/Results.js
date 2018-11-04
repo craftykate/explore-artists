@@ -1,19 +1,37 @@
 import React from 'react';
 import './Results.css';
+import RecentArtist from '../RecentArtist/RecentArtist';
 import SearchResults from '../SearchResults/SearchResults';
 import SimilarArtists from '../SimilarArtists/SimilarArtists';
 
 const Results = (props) => {
-  // show log in phrase if user not logged in
+  // show log in phrase if user not logged in, show recent artists if user is logged in
   let loginInstructions = null;
+  let recentArtistsContent = null;
   if (!props.loggedIn) {
     loginInstructions = '(log in with a free Spotify account first)'
+  } else {
+    const recentArtists = props.recentArtists.map(artist => {
+      return (
+        <RecentArtist 
+          key={artist}
+          artist={artist}
+          searchArtist={props.searchArtist} />
+      )
+    });
+    recentArtistsContent = (
+      <div id="recentArtists">
+        <h2>Suggestions for you:</h2>
+        <div className="artistGrid">{recentArtists}</div>
+      </div>
+    )
   }
 
   // app instructions
   const instructions = (
     <div className="welcome">
       <p className="headline">Look up an artist to get a list of similar artists to explore!</p> 
+      {recentArtistsContent}
       <p>Enter a song or artist above {loginInstructions} and choose the artist you want to explore.</p>
       <p>You'll get a list of similar artists and their genres. Keep clicking on artists to find more like them, drop down a music player to hear their popular songs, or launch their music in Spotify.</p>
       <p className="subwelcome">Chrome desktop is best supported by Spotify - you can listen to full songs right in the app! Otherwise you'll get snippets of songs, which is also super cool.</p>
