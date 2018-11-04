@@ -9,6 +9,7 @@ class RecentArtist extends Component {
     }
   }
 
+  // get name and picture for the artist ID 
   componentWillMount() {
     Spotify.getArtistInfo(this.props.artist).then(artistInfo => {
       this.setState({
@@ -17,6 +18,7 @@ class RecentArtist extends Component {
     })
   }
 
+  // if the picture was clicked, launch similar artist page for them
   searchArtist = () => {
     this.props.searchArtist(this.state.artist.id)
   }

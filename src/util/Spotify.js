@@ -12,19 +12,18 @@ let expires_in;
 let Spotify = {
 
   getRecentArtists() {
-    const link = `${spotifyLink}/me/player/recently-played`;
-    let recentArtists = [];
+    const link = `${spotifyLink}/me/player/recently-played?limit=50`;
     let recentArtistsIDs = [];
 
     return this.fetchGET(link).then(jsonResponse => {
       if (jsonResponse) {
+        console.log(jsonResponse)
         // go through each recently listened track
         for (let track of jsonResponse.items) {
           const newArtist = track.track.artists[0];
           // if artist on next track is new, store it 
           if (!recentArtistsIDs.includes(newArtist.id)) {
             recentArtistsIDs.push(newArtist.id)
-            recentArtists.push(newArtist);
           }
         }
         return recentArtistsIDs.slice(0,4);

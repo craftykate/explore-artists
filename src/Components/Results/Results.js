@@ -11,20 +11,23 @@ const Results = (props) => {
   if (!props.loggedIn) {
     loginInstructions = '(log in with a free Spotify account first)'
   } else {
-    const recentArtists = props.recentArtists.map(artist => {
-      return (
-        <RecentArtist 
-          key={artist}
-          artist={artist}
-          searchArtist={props.searchArtist} />
+    // if there are recent artists, show them
+    if (props.recentArtists && props.recentArtists.length > 0) {
+      const recentArtists = props.recentArtists.map(artist => {
+        return (
+          <RecentArtist 
+            key={artist}
+            artist={artist}
+            searchArtist={props.searchArtist} />
+        )
+      });
+      recentArtistsContent = (
+        <div id="recentArtists">
+          <h2>Suggestions for you:</h2>
+          <div className="artistGrid">{recentArtists}</div>
+        </div>
       )
-    });
-    recentArtistsContent = (
-      <div id="recentArtists">
-        <h2>Suggestions for you:</h2>
-        <div className="artistGrid">{recentArtists}</div>
-      </div>
-    )
+    }
   }
 
   // app instructions

@@ -8,8 +8,8 @@ import Footer from '../Footer/Footer';
 import ReactGA from 'react-ga';
 
 // initialize google analytics
-// ReactGA.initialize('UA-1632848-20');
-// ReactGA.pageview('app');
+ReactGA.initialize('UA-1632848-20');
+ReactGA.pageview('app');
 
 class App extends Component {
   constructor(props) {
