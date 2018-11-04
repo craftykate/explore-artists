@@ -22,6 +22,7 @@ class App extends Component {
       searchPoint: '', // 'items' if the user is looking at the initial search results and 'artists' if they are looking at similar artist results
       searchItems: [[],[]], // array[0] are artists matching the search term, array[1] are tracks matching the search term
       artists: [], // array of similar artists
+      searchedArtists: [[], []],
       loggedIn: Spotify.checkIfLoggedIn(), // toggles input field
     }
   }
@@ -70,11 +71,21 @@ class App extends Component {
   searchForSimilarArtists = (artistID) => {
     Spotify.getArtistInfo(artistID).then(info => {
       Spotify.getSimilarArtists(artistID).then(artists => {
+        // add artist to searched artist array
+        let searchedIDs = [...this.state.searchedArtists[0]];
+        let searchedArtists = [...this.state.searchedArtists[1]];
+        if (!searchedIDs.includes(info.id)) {
+          searchedIDs.push(info.id);
+          searchedArtists.push({name: info.name, id: info.id})
+        }
+        // add all data to state
         this.setState({
           artistInfo: {...info},
           searchPoint: 'artists',
           artists: artists,
-          genre: ''
+          searchedArtists: [[...searchedIDs], [...searchedArtists]],
+          genre: '',
+          searchItems: ''
         })
       })
     })
@@ -121,6 +132,7 @@ class App extends Component {
           searchByGenre={this.searchByGenre}
           similarArtists={this.state.artists}
           recentArtists={this.state.recentArtists}
+          searchedArtists={this.state.searchedArtists[1]}
           />
         <Footer />
       </div>

@@ -19,13 +19,15 @@ You can search by artist or song, the app will return results for both. The arti
 
 You can also click on one of the artist's genres to look up other artists in that genre - but you still have the main artist you searched for displayed at the top so you haven't strayed far. The genre searched for is highlighted and you have a link to go back to searching similar artists.
 
+The bottom of the page shows recently searched for artists so you can go back to a previous search.
+
 While you can get some of this information off Spotify it's not as detailed and not without ads and other visual clutter. I think they only show 5 popular songs, not 10, and their related artists don't include genres. 
 
 I like searching up an artist and clicking through related artists for a while, listening to songs along the way, until I find a new artist I like. 
 
 ## To Do
 * **Possible Features**
+* Save artist to user's spotify account?
 * Update readme with new features
-* Some sort of back button or recent artists
 * Make two tabs for search page with artist and song results?
 * Add section to footer to look up song by lyrics?

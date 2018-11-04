@@ -167,4 +167,13 @@
       max-height: 0;
     }
   }
+  .history {
+    a {
+      &:not(:last-child) {
+        &::after {
+          content: ", ";
+        }
+      }
+    }
+  }
 }
