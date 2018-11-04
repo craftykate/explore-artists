@@ -45,7 +45,10 @@ class SimilarArtists extends Component {
     // show link to go back to artist search if in genre search
     let resetLink = null;
     if (this.props.genre) {
-      resetLink = <a onClick={() => this.props.searchArtist(this.props.artistInfo.id)} className="resetLink">Go back to artists similar to {this.props.artistInfo.name}</a>
+      resetLink = (
+        /* eslint-disable-next-line */
+        <a onClick={() => this.props.searchArtist(this.props.artistInfo.id)} className="resetLink">Go back to artists similar to {this.props.artistInfo.name}</a>
+      )
     }
 
     // show listings of similar artists

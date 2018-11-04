@@ -65,7 +65,10 @@ const Results = (props) => {
   let history = null;
   if (props.searchedArtists.length > 0) {
     const historyArray = props.searchedArtists.map(artist => {
-      return <a onClick={() => {props.searchArtist(artist.id)}} key={artist.id}>{artist.name}</a>
+      return (
+        /* eslint-disable-next-line */
+        <a onClick={() => {props.searchArtist(artist.id)}} key={artist.id}>{artist.name}</a>
+      )
     })
     history = (
       <div className="history">
