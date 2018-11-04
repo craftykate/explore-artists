@@ -17,7 +17,6 @@ let Spotify = {
 
     return this.fetchGET(link).then(jsonResponse => {
       if (jsonResponse) {
-        console.log(jsonResponse)
         // go through each recently listened track
         for (let track of jsonResponse.items) {
           const newArtist = track.track.artists[0];
