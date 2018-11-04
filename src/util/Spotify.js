@@ -11,6 +11,7 @@ let expires_in;
 
 let Spotify = {
 
+  // get tracks recently listened to by user, store unique list of artists of those tracks, then return first four artists
   getRecentArtists() {
     const link = `${spotifyLink}/me/player/recently-played?limit=50`;
     let recentArtistsIDs = [];

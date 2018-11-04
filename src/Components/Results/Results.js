@@ -61,6 +61,7 @@ const Results = (props) => {
       genre={props.genre} />
   )
 
+  // show recent searches if there are any
   let history = null;
   if (props.searchedArtists.length > 0) {
     const historyArray = props.searchedArtists.map(artist => {

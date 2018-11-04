@@ -27,6 +27,7 @@ class App extends Component {
     }
   }
 
+  // get recently listened to artists when the page loads if logged in
   componentWillMount() {
     if (this.state.loggedIn) {
       Spotify.getRecentArtists().then(recentArtists => {

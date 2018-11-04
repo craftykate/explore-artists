@@ -21,13 +21,11 @@ You can also click on one of the artist's genres to look up other artists in tha
 
 The bottom of the page shows recently searched for artists so you can go back to a previous search.
 
-While you can get some of this information off Spotify it's not as detailed and not without ads and other visual clutter. I think they only show 5 popular songs, not 10, and their related artists don't include genres. 
+While you can get some of this information off Spotify it's not as detailed and not without ads and other visual clutter. I think they only show 5 popular songs, not 10, and genres are hard to find.
 
 I like searching up an artist and clicking through related artists for a while, listening to songs along the way, until I find a new artist I like. 
 
 ## To Do
 * **Possible Features**
-* Save artist to user's spotify account?
-* Update readme with new features
 * Make two tabs for search page with artist and song results?
 * Add section to footer to look up song by lyrics?

@@ -24,10 +24,12 @@ class RecentArtist extends Component {
   }
 
   render() {
+    // get image for artist if there is one
     let image = [];
     if (this.state.artist.thumbnail) {
       image = <img src={this.state.artist.thumbnail[0].url} alt="thumbnail" className="thumbnail" />
     }
+
     return (
       <div className="recentArtist" onClick={this.searchArtist} style={{cursor: 'pointer'}}>
         {image}
