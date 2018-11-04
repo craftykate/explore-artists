@@ -10,8 +10,20 @@ const MainArtist = (props) => {
 
   // set up genres for main artist, if there are any
   let genres = null;
+  let genreArray = [];
   if (props.artistInfo.genres.length > 0) {
-    genres = `Genres: ${props.artistInfo.genres.join(', ')}`
+    // turn each genre into a link
+    props.artistInfo.genres.forEach(genre => {
+      let classTitle = "genre"
+      if (genre === props.genre) {
+        classTitle = "genre active";
+      }
+      genreArray.push(
+        /* eslint-disable-next-line */ 
+        <a onClick={() => props.searchByGenre(genre)} className={classTitle} key={genre}>{genre}</a>
+      )
+    })
+    genres = genreArray;
   }
 
   // toggle link for showing/hiding player
@@ -35,7 +47,8 @@ const MainArtist = (props) => {
 
       <p className="info">
         <a href={props.artistInfo.url} target="_blank" rel="noopener noreferrer">Open in Spotify</a>
-        {genres}
+        <span className="genreInstructions">Click a genre to look up artists in that genre:</span>
+        <span>{genres}</span>
         {/* eslint-disable-next-line */}
         <a onClick={props.togglePlayer} className="playerLink">{playerLink}</a>
         <Player

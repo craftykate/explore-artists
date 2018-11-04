@@ -83,6 +83,9 @@
     color: lighten($text, 20%);
     font-style: italic;
     margin-bottom: 0;
+    a {
+      display: block;
+    }
   }
   h2 {
     text-align: center;
@@ -132,6 +135,26 @@
     img {
       border-radius: 50%;
       height: 60px;
+    }
+    span.genreInstructions {
+      display: block;
+      color: lighten($text, 40%);
+      font-style: italic;
+    }
+    a.genre {
+      display: inline;
+      color: $text;
+      &:hover {
+        color: $accent;
+      }
+      &:not(:last-child) {
+        &::after {
+          content: ", ";
+        }
+      }
+      &.active {
+        color: $main;
+      }
     }
   }
   iframe {

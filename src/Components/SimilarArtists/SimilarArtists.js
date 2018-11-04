@@ -16,7 +16,7 @@ class SimilarArtists extends Component {
     window.scrollTo(0, 0);
   }
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.visibility === prevState.visibility) {
+    if (this.state.visibility === prevState.visibility && !this.props.genre) {
       window.scrollTo(0, 0);
       // hide the player since new artist was searched
       if (this.state.visibility) {
@@ -36,6 +36,16 @@ class SimilarArtists extends Component {
   }
   
   render() {
+    let title = "Similar Artists:";
+    if (this.props.genre) {
+      title = `Artists in the genre "${this.props.genre}":`
+    }
+
+    let resetLink = null;
+    if (this.props.genre) {
+      resetLink = <a onClick={() => this.props.searchArtist(this.props.artistInfo.id)} className="resetLink">Go back to artists similar to {this.props.artistInfo.name}</a>
+    }
+
     // show listings of similar artists
     const artists = this.props.artists.map(artist => {
       return (
@@ -56,11 +66,16 @@ class SimilarArtists extends Component {
         <MainArtist
           artistInfo={this.props.artistInfo} 
           togglePlayer={this.togglePlayer} 
-          visibility={this.state.visibility} />
+          visibility={this.state.visibility}
+          searchByGenre={this.props.searchByGenre}
+          genre={this.props.genre} />
           
         {/* list of similar artists */}
-        <h3>Similar Artists:</h3>
-        <p className="instructions">Click on an artist to explore their similar artists</p>
+        <h3>{title}</h3>
+        <p className="instructions">
+          {resetLink}
+          Click on an artist to explore their similar artists
+        </p>
         <ul>
           {artists}
         </ul>

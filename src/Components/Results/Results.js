@@ -56,7 +56,9 @@ const Results = (props) => {
     <SimilarArtists
       artistInfo={props.artistInfo}
       artists={props.similarArtists}
-      searchArtist={props.searchArtist} />
+      searchArtist={props.searchArtist}
+      searchByGenre={props.searchByGenre}
+      genre={props.genre} />
   )
 
   return (

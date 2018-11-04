@@ -62,6 +62,27 @@ let Spotify = {
     })
   },
 
+  // get artists matching genre
+  searchByGenre(genre) {
+    const searchTerm = `genre%3A%22${genre}%22`
+    const link = `${spotifyLink}/search?type=artist&q=${searchTerm}`;
+
+    return this.fetchGET(link).then(jsonResponse => {
+      if (jsonResponse) {
+        return jsonResponse.artists.items.map(artist => {
+          return {
+            id: artist.id,
+            name: artist.name,
+            thumbnail: artist.images,
+            genres: artist.genres
+          }
+        })
+      } else {
+        return []
+      }
+    })
+  },
+
   // get info about artist being searched
   getArtistInfo(artistID) {
     const link = `${spotifyLink}/artists/${artistID}`;

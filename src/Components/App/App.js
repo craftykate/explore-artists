@@ -17,6 +17,7 @@ class App extends Component {
     this.state = {
       recentArtists: [], // recently listened to artists
       searchTerm: '', // what the user initially searched for
+      genre: '', // genre searched for
       artistInfo: {}, // the details of the artist the user wants to find similar artists to
       searchPoint: '', // 'items' if the user is looking at the initial search results and 'artists' if they are looking at similar artist results
       searchItems: [[],[]], // array[0] are artists matching the search term, array[1] are tracks matching the search term
@@ -59,7 +60,8 @@ class App extends Component {
       this.setState({
         searchTerm: searchTerm,
         searchPoint: 'items',
-        searchItems: items
+        searchItems: items,
+        genre: ''
       })
     })
   }
@@ -71,8 +73,20 @@ class App extends Component {
         this.setState({
           artistInfo: {...info},
           searchPoint: 'artists',
-          artists: artists
+          artists: artists,
+          genre: ''
         })
+      })
+    })
+  }
+
+  // search for artists in a genre
+  searchByGenre = (genre) => {
+    Spotify.searchByGenre(genre).then(artists => {
+      this.setState({
+        genre: genre,
+        searchPoint: 'artists',
+        artists: artists
       })
     })
   }
@@ -81,7 +95,8 @@ class App extends Component {
   clearResults = () => {
     this.setState({
       searchTerm: '',
-      searchPoint: ''
+      searchPoint: '',
+      genre: ''
     })
   }
   
@@ -98,10 +113,12 @@ class App extends Component {
           loggedIn={this.state.loggedIn}
           searchPoint={this.state.searchPoint}
           searchTerm={this.state.searchTerm} 
+          genre={this.state.genre}
           artistInfo={this.state.artistInfo}
           artists={this.state.searchItems[0]}
           tracks={this.state.searchItems[1]}
           searchArtist={this.searchForSimilarArtists}
+          searchByGenre={this.searchByGenre}
           similarArtists={this.state.artists}
           recentArtists={this.state.recentArtists}
           />
