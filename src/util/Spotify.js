@@ -19,14 +19,20 @@ let Spotify = {
     return this.fetchGET(link).then(jsonResponse => {
       if (jsonResponse) {
         // go through each recently listened track
-        for (let track of jsonResponse.items) {
-          const newArtist = track.track.artists[0];
-          // if artist on next track is new, store it 
-          if (!recentArtistsIDs.includes(newArtist.id)) {
-            recentArtistsIDs.push(newArtist.id)
+        if (jsonResponse.items.length > 0) {
+          for (let track of jsonResponse.items) {
+            const newArtist = track.track.artists[0];
+            // if artist on next track is new, store it 
+            if (!recentArtistsIDs.includes(newArtist.id)) {
+              recentArtistsIDs.push(newArtist.id)
+            }
           }
+          return recentArtistsIDs.slice(0,4);
+        } else {
+          return []
         }
-        return recentArtistsIDs.slice(0,4);
+      } else {
+        return []
       }
     })
   },

@@ -4,7 +4,7 @@ import Player from '../Player/Player';
 const MainArtist = (props) => {
   // show image for main artist if there is one
   let image = null;
-  if (props.artistInfo.thumbnail.length > 0) {
+  if (props.artistInfo.thumbnail) {
     image = <img src={props.artistInfo.thumbnail[0].url} alt="thumbnail" className="thumbnail" />
   }
 
